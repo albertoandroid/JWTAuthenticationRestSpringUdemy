@@ -17,7 +17,7 @@ import com.example.curso.model.JwtAuthenticationToken;
 
 public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilter {
 
-	protected JwtAuthenticationTokenFilter() {
+	public JwtAuthenticationTokenFilter() {
 		super("/api/**");
 	}
 

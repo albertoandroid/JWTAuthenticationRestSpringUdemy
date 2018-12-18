@@ -17,8 +17,9 @@ import org.springframework.stereotype.Component;
 import com.example.curso.security.JwtAuthenticationEntryPoint;
 import com.example.curso.security.JwtAuthenticationProvider;
 import com.example.curso.security.JwtAuthenticationTokenFilter;
+import com.example.curso.security.JwtSuccessHandler;
 
-@EnableGlobalMethodSecurity(prePostEnable = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Component
 public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -36,8 +37,8 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public JwtAuthenticationTokenFilter authenticationTokenFilter() {
-		JwtAuthenticationTokenFilter fitler = new JwtAuthenticationTokenFilter();
-		filter.setAuthenticationManger(authenticationManager());
+		JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter();
+		filter.setAuthenticationManager(authenticationManager());
 		filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());
 		return filter;
 	}
