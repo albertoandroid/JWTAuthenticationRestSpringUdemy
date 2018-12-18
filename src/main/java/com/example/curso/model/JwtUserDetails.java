@@ -1,6 +1,7 @@
 package com.example.curso.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ public class JwtUserDetails implements UserDetails {
 	
 	
 
-	public JwtUserDetails(String userName, String token, Long id, Collection<? extends GrantedAuthority> authorities) {
+	public JwtUserDetails(String userName, Long id, String token, List<GrantedAuthority> authorities) {
 		super();
 		this.userName = userName;
 		this.token = token;
