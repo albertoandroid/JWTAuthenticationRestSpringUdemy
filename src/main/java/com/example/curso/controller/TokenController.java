@@ -1,5 +1,8 @@
 package com.example.curso.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,15 +25,16 @@ public class TokenController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> generate(@RequestBody final Login login){
+	public ResponseEntity<?> generate(@RequestBody final Login login){
 		JwtUser jwtUser = new JwtUser();
 		jwtUser = existUser(login);
 		if(jwtUser != null) {
-			return new ResponseEntity<String>(jwtGenerator.generate(jwtUser), HttpStatus.OK);
+			List<String> lista = new ArrayList<>();
+			lista.add(jwtGenerator.generate(jwtUser));
+			return new ResponseEntity<List<String>>(lista, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
-		
 	}
 
 	private JwtUser existUser(Login login) {
